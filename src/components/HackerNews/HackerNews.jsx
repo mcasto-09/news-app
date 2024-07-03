@@ -7,10 +7,13 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 export default function HackerNews() {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const articles = useSelector((state) => state.articles);
+  const loading = useSelector((state) => state.loading);
+  const dispatch = useDispatch();
 
-  const 
+  useEffect(() => {
+    dispatch(requestArticles);
+  }, [])
 
   const articleCards = articles.map((article) => <Card key={article.id} article={article} />);
   return (
